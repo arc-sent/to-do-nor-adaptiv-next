@@ -1,95 +1,59 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import './globals.css'
+import React from 'react';
+import CaseCard from './component/caseComponent';
+import './HomePage.scss';
+import Link from 'next/link';
+import FormTest from './component/FormTest';
+async function getCase() {
+  try {
+    const response = await fetch('http://localhost:4000/case', {
+      next: {
+        revalidate: 0,
+      }
+    });
 
-export default function Home() {
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching case:', error);
+  }
+}
+
+export default async function Home() {
+
+  const cases = await getCase();
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.js</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div>
+      <div className='ImageWrapper'>
+        <h1>Создайте порядок в своем дне с Arc!</h1>
+        <p>
+          В нашем быстром мире бывает сложно все успеть и помнить о важных делах. Список задач поможет вам организовать свои мысли и сделать каждый день продуктивным. Не позволяйте забывчивости контролировать вашу жизнь — ведите свой to-do list с Arc и обретите ясность и уверенность.
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+          После регистрации вы сможете перейти в свой аккаунт и создавать там дела. Начните управлять своим временем эффективно!
+        </p>
+        <div className='ButtonWrapper'>
+          <Link href='/registration' className="Links"><button>Нажмите здесь, чтобы начать!</button></Link>
         </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+      </div>
+
+      <div className='TestTask'>
+        <h1>Исследуйте наш тестовый To-Do List!</h1>
+
+        <p>Здесь вы можете не только создавать новые дела, но и удалять их, играя с функционалом. Начните прямо сейчас и дайте жизнь своим планам!</p>
+
+        <FormTest url='http://localhost:4000/case' />
+        {
+          cases.map(Item => (
+            <CaseCard card={Item} key={Item.id} />
+          ))
+        }
+      </div>
     </div>
+
   );
 }

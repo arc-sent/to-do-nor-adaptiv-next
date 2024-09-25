@@ -1,0 +1,44 @@
+@mixin style-priority2($color) {
+    font-size: 18px;
+    margin: 0;
+    padding: 10px;
+    background-color: $color;
+    text-align: center;
+}
+
+.wrapperCase {
+    margin-top: 25px;
+
+    >h1 {}
+
+    >p {
+        padding: 20px;
+        background-color: #ffff;
+        border: 1px solid #212121;
+        font-size: 20px;
+    }
+}
+
+.wrapperH1 {
+    padding: 20px;
+    background-color: #ffff;
+    border: 1px solid #212121;
+
+    >h1 {
+        text-align: center;
+        font-size: 30px;
+    }
+
+
+    .low {
+        @include style-priority2(#67acff)
+    }
+
+    .medium {
+        @include style-priority2(#ffe167)
+    }
+
+    .high {
+        @include style-priority2(#ff6c67)
+    }
+}

@@ -1,0 +1,40 @@
+@import '../mixins';
+
+.WrapperForm {
+    @include wrapper-style;
+}
+
+.Form {
+   @include form-style;
+}
+
+.FileInput {
+    font-size: 0;
+    margin: 0;
+    margin-bottom: 20px;
+
+    &::file-selector-button {
+        font-size: 13px;
+        border: 1px solid #212121;
+        background: #ffffff;
+        color: #212121;
+        cursor: pointer;
+        height: 35px;
+        transition: 0.3s;
+        width: 100%;
+
+        &:hover {
+            background: #212121;
+            border: 1px solid #ffffff;
+            color: #ffffff;
+        }
+    }
+}
+
+.buttonInWrapper {
+    @include button-style;
+    width: 300px;
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}

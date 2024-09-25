@@ -1,0 +1,13 @@
+@import '../mixins';
+
+.FormEntrance {
+    @include form-style;
+}
+
+.Form {
+    @include form-style;
+}
+
+.buttonInFrom {
+    margin-top: 15px;
+}

@@ -1,0 +1,170 @@
+@mixin style-priority($color) {
+    background-color: $color;
+    display: inline-block;
+    padding: 5px;
+    font-size: 16px;
+    border-radius: 3px;
+    margin-top: 10px;
+}
+
+.CaseCard {
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 0px;
+    margin: 50px 0px;
+    border: #212121 solid 1px;
+    color: #212121;
+    >p {
+        margin: 5px;
+    }
+
+    .low {
+        @include style-priority(#67acff)
+    }
+
+    .medium {
+        @include style-priority(#ffe167)
+    }
+
+    .high {
+        @include style-priority(#ff6c67)
+    }
+
+    .CloseIcon {
+        font-size: 18px;
+        float: right;
+        transition: 0.3s;
+        cursor: pointer;
+
+        &:hover {
+            color: #ff6c67;
+        }
+    }
+}
+
+.content {
+    color: #212121;
+    padding: 0px 150px;
+    min-height: 83.65vh;
+    margin-top: 55px;
+    overflow-x: hidden;
+}
+
+.footer {
+    text-align: center;
+    color: #fff;
+    background-color: #212121;
+    padding: 40px 150px;
+}
+
+.header {
+    background-color: #f8f8f8;
+    width: 100%;
+    padding: 10px 150px;
+    display: flex;
+    position: fixed;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #212121;
+    z-index: 1000;
+
+    >p {
+        font-weight: 600;
+        font-size: 15px;
+    }
+
+    .Links {
+        margin-right: 15px;
+        color: #212121;
+        font-size: 15px;
+
+        &:hover {
+            color: #2121216a;
+        }
+    }
+}
+
+.TestForm {
+    margin: 50px 0px;
+
+    >form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    input {
+        width: 100%;
+        height: 35px;
+    }
+
+    textarea {
+        width: 100%;
+        height: 55px;
+    }
+
+    select {
+        width: 100%;
+        height: 30px;
+    }
+
+    button {
+        border: 1px solid #212121;
+        background: #ffffff;
+        color: #212121;
+        cursor: pointer;
+        width: 100%;
+        transition: 0.5s;
+        padding: 10px;
+        margin-top: 20px;
+
+        &:hover {
+            background: #212121;
+            border: 1px solid #ffffff;
+            color: #ffffff;
+        }
+    }
+}
+
+.WrapperFooter {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    >h1 {
+        font-size: 18px;
+        margin: 0;
+        margin-bottom: 15px;
+
+    }
+
+    .Links {
+        margin-left: 15px;
+        color: #fff;
+        transition: 0.3s;
+
+        &:hover {
+            color: #ffffff7c;
+        }
+    }
+}
+
+.userCard {
+    display: flex;
+    align-items: center;
+
+    >img {
+        width: 50px;
+        height: 50px;
+        border-radius: 30px;
+        margin-right: 15px;
+    }
+    p {
+        margin: 0; 
+        font-size: 14px;
+        color: #212121;
+    }
+    .p2{
+        margin-left: 5px;
+    }
+}
